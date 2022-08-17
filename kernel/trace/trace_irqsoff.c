@@ -749,10 +749,10 @@ void tracer_preempt_on(unsigned long a0, unsigned long a1)
 	 * Trace preempt disable stack if preemption
 	 * is disabled for more than the threshold.
 	 */
-	if (delta > sysctl_preemptoff_tracing_threshold_ns)
+	/*if (delta > sysctl_preemptoff_tracing_threshold_ns)
 		trace_sched_preempt_disable(delta, ps->irqs_disabled,
 				ps->caddr[0], ps->caddr[1],
-				ps->caddr[2], ps->caddr[3], ps->caddr[4]);
+				ps->caddr[2], ps->caddr[3], ps->caddr[4]);*/
 	ps->ts = 0;
 	lockdep_on();
 #endif /* CONFIG_PREEMPTIRQ_EVENTS */

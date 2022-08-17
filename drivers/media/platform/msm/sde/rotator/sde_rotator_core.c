@@ -414,7 +414,7 @@ int sde_rotator_clk_ctrl(struct sde_rot_mgr *mgr, int enable)
 			msm_bus_scale_client_update_context(
 				mgr->data_bus.bus_hdl, false,
 				mgr->data_bus.curr_bw_uc_idx);
-			trace_rot_bw_ao_as_context(0);
+			//trace_rot_bw_ao_as_context(0);
 		} else {
 			sde_rotator_disable_clk(mgr,
 					SDE_ROTATOR_CLK_MDSS_ROT_SUB);
@@ -429,7 +429,7 @@ int sde_rotator_clk_ctrl(struct sde_rot_mgr *mgr, int enable)
 			msm_bus_scale_client_update_context(
 				mgr->data_bus.bus_hdl, true,
 				mgr->data_bus.curr_bw_uc_idx);
-			trace_rot_bw_ao_as_context(1);
+			//trace_rot_bw_ao_as_context(1);
 		}
 	}
 

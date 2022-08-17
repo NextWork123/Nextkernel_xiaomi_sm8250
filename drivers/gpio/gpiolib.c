@@ -2584,7 +2584,7 @@ int gpiod_direction_input(struct gpio_desc *desc)
 	if (status == 0)
 		clear_bit(FLAG_IS_OUT, &desc->flags);
 
-	trace_gpio_direction(desc_to_gpio(desc), 1, status);
+	//trace_gpio_direction(desc_to_gpio(desc), 1, status);
 
 	return status;
 }
@@ -2841,7 +2841,7 @@ static int gpiod_get_raw_value_commit(const struct gpio_desc *desc)
 	offset = gpio_chip_hwgpio(desc);
 	value = chip->get ? chip->get(chip, offset) : -EIO;
 	value = value < 0 ? value : !!value;
-	trace_gpio_value(desc_to_gpio(desc), 1, value);
+	//trace_gpio_value(desc_to_gpio(desc), 1, value);
 	return value;
 }
 
@@ -3039,7 +3039,7 @@ static void gpio_set_open_drain_value_commit(struct gpio_desc *desc, bool value)
 		if (!err)
 			set_bit(FLAG_IS_OUT, &desc->flags);
 	}
-	trace_gpio_direction(desc_to_gpio(desc), value, err);
+	//trace_gpio_direction(desc_to_gpio(desc), value, err);
 	if (err < 0)
 		gpiod_err(desc,
 			  "%s: Error in set_value for open drain err %d\n",
@@ -3064,7 +3064,7 @@ static void gpio_set_open_source_value_commit(struct gpio_desc *desc, bool value
 	} else {
 		err = chip->direction_input(chip, offset);
 	}
-	trace_gpio_direction(desc_to_gpio(desc), !value, err);
+	//trace_gpio_direction(desc_to_gpio(desc), !value, err);
 	if (err < 0)
 		gpiod_err(desc,
 			  "%s: Error in set_value for open source err %d\n",
@@ -3076,7 +3076,7 @@ static void gpiod_set_raw_value_commit(struct gpio_desc *desc, bool value)
 	struct gpio_chip	*chip;
 
 	chip = desc->gdev->chip;
-	trace_gpio_value(desc_to_gpio(desc), 0, value);
+	//trace_gpio_value(desc_to_gpio(desc), 0, value);
 	chip->set(chip, gpio_chip_hwgpio(desc), value);
 }
 
@@ -3139,7 +3139,7 @@ int gpiod_set_array_value_complex(bool raw, bool can_sleep,
 
 			if (!raw && test_bit(FLAG_ACTIVE_LOW, &desc->flags))
 				value = !value;
-			trace_gpio_value(desc_to_gpio(desc), 0, value);
+			//trace_gpio_value(desc_to_gpio(desc), 0, value);
 			/*
 			 * collect all normal outputs belonging to the same chip
 			 * open drain and open source outputs are set individually

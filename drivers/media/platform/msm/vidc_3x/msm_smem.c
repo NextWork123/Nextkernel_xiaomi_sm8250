@@ -98,8 +98,8 @@ static int msm_dma_get_device_address(struct dma_buf *dbuf, unsigned long align,
 		}
 
 		/* debug trace's need to be updated later */
-		trace_msm_smem_buffer_iommu_op_start("MAP", 0, 0,
-			align, *iova, *buffer_size);
+		//trace_msm_smem_buffer_iommu_op_start("MAP", 0, 0,
+		//	align, *iova, *buffer_size);
 
 		if (table->sgl) {
 			*iova = table->sgl->dma_address;
@@ -117,8 +117,8 @@ static int msm_dma_get_device_address(struct dma_buf *dbuf, unsigned long align,
 		mapping_info->buf = dbuf;
 		mapping_info->cb_info = (void *)cb;
 
-		trace_msm_smem_buffer_iommu_op_end("MAP", 0, 0,
-			align, *iova, *buffer_size);
+		//trace_msm_smem_buffer_iommu_op_end("MAP", 0, 0,
+		//	align, *iova, *buffer_size);
 	} else {
 		dprintk(VIDC_DBG, "iommu not present, use phys mem addr\n");
 	}
@@ -152,11 +152,11 @@ static int msm_dma_put_device_address(u32 flags,
 		return -EINVAL;
 	}
 
-	trace_msm_smem_buffer_iommu_op_start("UNMAP", 0, 0, 0, 0, 0);
+	//trace_msm_smem_buffer_iommu_op_start("UNMAP", 0, 0, 0, 0, 0);
 	dma_buf_unmap_attachment(mapping_info->attach,
 		mapping_info->table, DMA_BIDIRECTIONAL);
 	dma_buf_detach(mapping_info->buf, mapping_info->attach);
-	trace_msm_smem_buffer_iommu_op_end("UNMAP", 0, 0, 0, 0, 0);
+	//trace_msm_smem_buffer_iommu_op_end("UNMAP", 0, 0, 0, 0, 0);
 
 	mapping_info->dev = NULL;
 	mapping_info->domain = NULL;

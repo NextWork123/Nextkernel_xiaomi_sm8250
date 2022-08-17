@@ -1031,7 +1031,7 @@ static int spi_transfer_one_message(struct spi_controller *ctlr,
 	SPI_STATISTICS_INCREMENT_FIELD(stats, messages);
 
 	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-		trace_spi_transfer_start(msg, xfer);
+		//trace_spi_transfer_start(msg, xfer);
 
 		spi_statistics_add_transfer_stats(statm, xfer, ctlr);
 		spi_statistics_add_transfer_stats(stats, xfer, ctlr);
@@ -1079,7 +1079,7 @@ static int spi_transfer_one_message(struct spi_controller *ctlr,
 					xfer->len);
 		}
 
-		trace_spi_transfer_stop(msg, xfer);
+		//trace_spi_transfer_stop(msg, xfer);
 
 		if (msg->status != -EINPROGRESS)
 			goto out;
@@ -1395,7 +1395,7 @@ void spi_finalize_current_message(struct spi_controller *ctlr)
 	kthread_queue_work(&ctlr->kworker, &ctlr->pump_messages);
 	spin_unlock_irqrestore(&ctlr->queue_lock, flags);
 
-	trace_spi_message_done(mesg);
+	//trace_spi_message_done(mesg);
 
 	mesg->state = NULL;
 	if (mesg->complete)
@@ -3039,7 +3039,7 @@ static int __spi_async(struct spi_device *spi, struct spi_message *message)
 	SPI_STATISTICS_INCREMENT_FIELD(&ctlr->statistics, spi_async);
 	SPI_STATISTICS_INCREMENT_FIELD(&spi->statistics, spi_async);
 
-	trace_spi_message_submit(message);
+	//trace_spi_message_submit(message);
 
 	return ctlr->transfer(spi, message);
 }
@@ -3188,7 +3188,7 @@ static int __spi_sync(struct spi_device *spi, struct spi_message *message)
 	if (ctlr->transfer == spi_queued_transfer) {
 		spin_lock_irqsave(&ctlr->bus_lock_spinlock, flags);
 
-		trace_spi_message_submit(message);
+		//trace_spi_message_submit(message);
 
 		status = __spi_queued_transfer(spi, message, false);
 
